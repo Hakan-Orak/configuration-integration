@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+    stage('Build') {
+                steps {
+                	bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                }
+            }
+
         stage('Package') {
             steps {
             	sh 'mvn clean'
@@ -11,7 +17,7 @@ pipeline {
         stage('Analyse') {
             steps {
             	sh 'mvn checkstyle:checkstyle'
-                sh 'mvn spotbugs:spotbugs'
+               // sh 'mvn spotbugs:spotbugs'
                 sh 'mvn pmd:pmd'
             }
         }
