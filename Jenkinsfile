@@ -17,7 +17,7 @@ pipeline {
         stage('Analyse') {
             steps {
             	bat 'mvn checkstyle:checkstyle'
-               // sh 'mvn spotbugs:spotbugs'
+                bat 'mvn spotbugs:spotbugs'
                 bat 'mvn pmd:pmd'
             }
         }
